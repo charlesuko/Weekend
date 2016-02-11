@@ -1,7 +1,9 @@
 package com.argostic.weekend;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Fragment;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.nfc.NdefMessage;
 import android.nfc.NdefRecord;
@@ -15,6 +17,9 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.parse.Parse;
+import com.parse.ParseObject;
+
 import java.nio.charset.Charset;
 
 public class MainActivity extends Activity {
@@ -23,6 +28,27 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_beam);
+        //SharedPreferences sharedPreference = this.getSharedPreferences("com.argostic.weekend", Context.MODE_PRIVATE);
+        //sharedPreference.edit().putString("username", "rob").apply();
+
+        //String username = sharedPreference.getString("username", "");
+        Parse.enableLocalDatastore(this);
+
+        Parse.initialize(this, "j7UnOVZnDCQUfq0YwVhsnMvHSfkWQzXlkNS0faD9", "O1Q42eHi73OMmwQLlXUoYi1rYxhi6nIBVUoFXGkO");
+        ParseObject testObject = new ParseObject("TestObject");
+        testObject.put("foo", "bar");
+        testObject.saveInBackground();
+
+
+        new AlertDialog.Builder(this).setIcon(android.R.drawable.ic_dialog_alert)
+                .setTitle("Are you sure about new attendee?")
+                .setMessage("Do you really want to add a new member to your class?")
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
 
         if (savedInstanceState == null) {
             getFragmentManager().beginTransaction()

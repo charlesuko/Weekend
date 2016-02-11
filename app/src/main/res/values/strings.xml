@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Android Beam</string>
+    <string name="app_name">Weekend</string>
 
     <string name="hello_world">Text To Transfer</string>
     <string name="btn_set_text">Set Text to beam</string>
